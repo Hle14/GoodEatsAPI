@@ -16,4 +16,4 @@ var restaurant = new mongoose.Schema({
 });
 
 //module.exports = dbConnection.model('UserModel',userSchema);
-module.exports = mongoose.model('UserModel',userSchema);
+module.exports = mongoose.model('restaurant',restaurantSchema);
