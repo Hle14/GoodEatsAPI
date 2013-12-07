@@ -36,14 +36,14 @@ var restaurant = mongoose.model('restaurant',{
 
 
 var hans = new restaurant({
-	name : 'hans',
-	address : 'lol',
+	name : 'Rasika',
+	address : '633 D St NW',
 	sugarRating : 5,
 	dishes : [{
-		name : 'pro foodz',
+		name : 'good food',
 		levels : 2
 	}],
-	zip: 12345
+	zip: 20004
 })
 
 
