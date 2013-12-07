@@ -5,14 +5,23 @@
 
 var express = require('express');
 var routes = require('./routes');
-var user = require('./routes/user');
+
 var http = require('http');
-var path = require('path');
+
 
 var app = express();
 
+app.configure(function() {
+		app.use(express.static(__dirname + '/public'));
+		app.use(express.logger('dev'));
+		app.use(express.bodyParser());
+		app.use(express.methodOverride());
+});
+
 var mongoose = require('mongoose');
+
 mongoose.connect('mongodb://localhost:27017/Restaurants');
+
 var restaurant = mongoose.model('restaurant',{
 	name : String,
 	address : String,
@@ -41,23 +50,17 @@ hans.save();
 
 
 // all environments
-app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/users', user.list);
 app.get('/api/restaurants',function(req,res){
 	restaurant.find(function(err,restaurants){
 		if (err)
@@ -68,12 +71,19 @@ app.get('/api/restaurants',function(req,res){
 });
 
 app.get('/api/restaurants/:name',function(req,res){
-	restaurants.find({ 'name': req.params.name });
-});
-app.get('/api/restaurants/:zip',function(req,res){
-	restaurants.find({ 'zip': req.params.zip });
+	restaurant.find({'name' : req.params.name}, function(err, results) {
+		console.log(results);
+		res.json(results);
+	})
 });
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
+app.get('*', function(req, res) {
+	res.sendfile('./public/index.html');
+})
+
+/*app.get('/api/restaurants/:zip',function(req,res){
+	restaurants.find({ 'zip': req.params.zip });
+});*/
+
+app.listen(1337);
+console.log("App is running on port 1337");

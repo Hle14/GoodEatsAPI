@@ -1,0 +1,50 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="goodEatsApi">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Good Eats Api</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#restaurant-list 				{ margin-bottom:30px; }
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+	<script src="core.js"></script>
+
+</head>
+<body ng-controller="mainController" ng-init="initialize()">
+	<div class="container">
+
+		<div class="jumbotron text-center">
+			<h1>Restaurants In Your Area <span class="label label-info">{{ restaurants.length }}</span></h1>
+		</div>
+
+		<div id="restaurant-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+				<div class="checkbox" ng-repeat="restaurant in restaurants">
+					<label>
+						<input type="checkbox"> {{ restaurant.name }}
+					</label>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>
+
