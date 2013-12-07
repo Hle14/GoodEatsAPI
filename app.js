@@ -23,6 +23,23 @@ var restaurant = mongoose.model('restaurant',{
 	zip: Number
 });
 
+
+
+var hans = new restaurant({
+	name : 'hans',
+	address : 'lol',
+	dishes : [{
+		name : 'pro foodz',
+		levels : 2
+	}],
+	zip: 12345
+})
+
+
+hans.save(); 
+
+
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
@@ -45,7 +62,7 @@ app.get('/api/restaurants',function(req,res){
 	restaurant.find(function(err,restaurants){
 		if (err)
 			res.send(err);
-
+		console.log(restaurants);
 		res.json(restaurants);
 	})
 });
