@@ -20,7 +20,7 @@ app.configure(function() {
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/Restaurants');
+mongoose.connect('mongodb://nodejitsu_sonicrida:msd8bkd84c168066hlv995ko9@ds045988.mongolab.com:45988/nodejitsu_sonicrida_nodejitsudb5770715035');
 
 var restaurant = mongoose.model('restaurant',{
 	name : String,
@@ -87,12 +87,29 @@ app.get('/api/restaurants/zipcode:zipNumber',function(req,res){
 });
 
 app.get('/api/sms', function(req, res) {
+	//console.log(req);
 
 	var resp = new twilio.TwimlResponse();
 	//var parsedResponse = textmessage.parse(req);
 	//resp.message(parsedresponse.toString());
-	resp.message("Thanks for texting us. This service isn't running yet but it will be soon");
-	res.send(resp.toString());
+
+	var parsedResponse = req.body;
+
+	restaurant.find({'name': parsedResponse},function(err,restaurants){
+		
+		console.log(restaurants);
+		//res.json(restaurants);
+		//get random restaurant from list of returned results
+		var picked = restaurants[Math.floor(Math.random()*restaurants.length)];
+		//send just the name of the restaurant
+		var messageText = picked.name + ' ' + picked.address;
+		console.log(messageText);
+		resp.message(messageText);
+		res.send(resp.toString());
+	});
+
+	//resp.message("Thanks for texting us. This service isn't running yet but it will be soon");
+	//res.send(resp.toString());
 });
 
 app.get('*', function(req, res) {
