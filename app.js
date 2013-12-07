@@ -91,7 +91,8 @@ app.get('/api/sms', function(req, res) {
 	//var parsedResponse = textmessage.parse(req);
 	//resp.message(parsedresponse.toString());
 
-	var parsedResponse = req.body;
+	console.log(req.query.Body);
+	var parsedResponse = req.query.Body;
 
 	restaurant.find({'name': parsedResponse},function(err,restaurants){
 		
