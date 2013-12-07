@@ -12,7 +12,10 @@ var validator = function(value,)
 var restaurant = new mongoose.Schema({
 	name: String,
 	address: String,
-	dishes: [{name: String,levels:{type:Number, min:0}}]
+	dishes: [{
+		name: String,
+		levels: { type : Number, min : 0}
+	}]
 });
 
 //module.exports = dbConnection.model('UserModel',userSchema);
