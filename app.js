@@ -20,6 +20,7 @@ var restaurant = new mongoose.model('restaurant',{
 		name : String,
 		levels : {type : Number, min : 0}
 	}]
+	zip: Number
 });
 
 // all environments
@@ -47,6 +48,13 @@ app.get('/api/restaurants',function(req,res){
 
 		res.json(restaurants);
 	})
+});
+
+app.get('/api/restaurants/:name',function(req,res){
+	restaurants.find({ 'name': req.params.name });
+})
+app.get('/api/restaurants/:zip',function(req,res){
+	restaurants.find({ 'zip': req.params.zip });
 })
 
 http.createServer(app).listen(app.get('port'), function(){
