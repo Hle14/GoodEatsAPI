@@ -85,10 +85,13 @@ app.get('/api/restaurants/:name',function(req,res){
 
 
 app.get('/api/sms', function(req, res) {
+	console.log(req);
 
 	var resp = new twilio.TwimlResponse();
 	//var parsedResponse = textmessage.parse(req);
 	//resp.message(parsedresponse.toString());
+
+	var parsedResponse = 'Papa';
 
 	restaurant.find({'name': parsedResponse},function(err,restaurants){
 		
