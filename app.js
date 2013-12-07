@@ -79,7 +79,7 @@ app.get('/api/restaurants/:name',function(req,res){
 
 app.get('*', function(req, res) {
 	res.sendfile('./public/index.html');
-});
+})
 
 /*app.get('/api/restaurants/:zip',function(req,res){
 	restaurants.find({ 'zip': req.params.zip });

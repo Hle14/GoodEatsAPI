@@ -31,12 +31,10 @@
 			<h1>Restaurants In Your Area <span class="label label-info">{{ restaurants.length }}</span></h1>
 		</div>
 
-		Search: <input ng-model = "search.name">
-
 		<div id="restaurant-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 
-				<div class="checkbox" ng-repeat="restaurant in restaurants | filter:search">
+				<div class="checkbox" ng-repeat="restaurant in restaurants">
 					<label>
 						<input type="checkbox"> {{ restaurant.name }}
 					</label>
