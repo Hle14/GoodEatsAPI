@@ -92,10 +92,12 @@ app.get('/api/sms', function(req, res) {
 	//resp.message(parsedresponse.toString());
 
 	console.log(req.query.Body);
-	var parsedResponse = req.query.Body;
+	var rawString = req.query.Body;
 
-	restaurant.find({'name': parsedResponse},function(err,restaurants){
-		
+	//var items = rawString.split(" ");
+
+	restaurant.find({'zip': rawString},function(err,restaurants){
+			
 		console.log(restaurants);
 		//res.json(restaurants);
 		//get random restaurant from list of returned results
@@ -107,6 +109,37 @@ app.get('/api/sms', function(req, res) {
 		res.send(resp.toString());
 	});
 
+/*
+	if(items.length == 1)
+	{
+		restaurant.find({'name': rawString},function(err,restaurants){
+			
+			console.log(restaurants);
+			//res.json(restaurants);
+			//get random restaurant from list of returned results
+			var picked = restaurants[Math.floor(Math.random()*restaurants.length)];
+			//send just the name of the restaurant
+			var messageText = picked.name + ' ' + picked.address;
+			console.log(messageText);
+			resp.message(messageText);
+			res.send(resp.toString());
+		});
+	} else
+	{
+		restaurant.find({'name': items[0], address: items[1], zip: items[2]},function(err,restaurants){
+			
+			console.log(restaurants);
+			//res.json(restaurants);
+			//get random restaurant from list of returned results
+			var picked = restaurants[Math.floor(Math.random()*restaurants.length)];
+			//send just the name of the restaurant
+			var messageText = picked.name + ' ' + picked.address;
+			console.log(messageText);
+			resp.message(messageText);
+			res.send(resp.toString());
+		});
+	}
+*/
 	//resp.message("Thanks for texting us. This service isn't running yet but it will be soon");
 	//res.send(resp.toString());
 });
