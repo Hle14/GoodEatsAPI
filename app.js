@@ -13,13 +13,13 @@ var app = express();
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/Restaurants');
-var restaurant = new mongoose.model('restaurant',{
+var restaurant = mongoose.model('restaurant',{
 	name : String,
 	address : String,
 	dishes : [{
 		name : String,
 		levels : {type : Number, min : 0}
-	}]
+	}],
 	zip: Number
 });
 
