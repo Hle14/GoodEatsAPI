@@ -5,8 +5,8 @@
 
 var express = require('express');
 var routes = require('./routes');
-
 var http = require('http');
+var twilio = require('twilio');
 
 
 var app = express();
@@ -86,10 +86,22 @@ app.get('/api/restaurants/:name',function(req,res){
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+app.get('/api/sms', function(req, res) {
+
+	var resp = new twilio.TwimlResponse();
+	//var parsedResponse = textmessage.parse(req);
+	//resp.message(parsedresponse.toString());
+	resp.messge("Thanks for texting us. This service isn't running yet but it will be soon");
+	res.send(resp.toString());
+});
+
+>>>>>>> origin/jonathan
 app.get('*', function(req, res) {
 	res.sendfile('./public/index.html');
-})
+});
 
 >>>>>>> origin/jonathan
 /*app.get('/api/restaurants/:zip',function(req,res){
