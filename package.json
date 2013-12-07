@@ -1,6 +1,6 @@
 {
   "name": "application-name",
-  "version": "0.0.1",
+  "version": "0.0.1-1",
   "private": true,
   "scripts": {
     "start": "node app.js"
@@ -10,5 +10,9 @@
     "jade": "*",
     "mongoose": "~3.8.1",
     "twilio": "~1.4.0"
+  },
+  "subdomain": "goodeatsapi",
+  "engines": {
+    "node": "0.10.x"
   }
 }

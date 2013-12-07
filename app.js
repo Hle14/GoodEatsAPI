@@ -20,7 +20,7 @@ app.configure(function() {
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/Restaurants');
+mongoose.connect('ENTER MONGO URL HERE');
 
 var restaurant = mongoose.model('restaurant',{
 	name : String,
@@ -77,12 +77,19 @@ app.get('/api/restaurants/:name',function(req,res){
 	})
 });
 
+app.get('/api/restaurants/zipcode:zipNumber',function(req,res){
+	restaurant.find({'zipcode' : req.params.zipNumber}, function(err, results) {
+		console.log(results);
+		res.json(results);
+	});
+});
+
 app.get('/api/sms', function(req, res) {
 
 	var resp = new twilio.TwimlResponse();
 	//var parsedResponse = textmessage.parse(req);
 	//resp.message(parsedresponse.toString());
-	resp.messge("Thanks for texting us. This service isn't running yet but it will be soon");
+	resp.message("Thanks for texting us. This service isn't running yet but it will be soon");
 	res.send(resp.toString());
 });
 
