@@ -40,7 +40,14 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/api/restaurants',function(req,res))
+app.get('/api/restaurants',function(req,res){
+	restaurant.find(function(err,restaurants){
+		if (err)
+			res.send(err);
+
+		res.json(restaurants);
+	})
+})
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
