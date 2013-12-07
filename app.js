@@ -84,11 +84,11 @@ app.get('/api/sms', function(req, res) {
 	//resp.message(parsedresponse.toString());
 	resp.messge("Thanks for texting us. This service isn't running yet but it will be soon");
 	res.send(resp.toString());
-}
+});
 
 app.get('*', function(req, res) {
 	res.sendfile('./public/index.html');
-})
+});
 
 /*app.get('/api/restaurants/:zip',function(req,res){
 	restaurants.find({ 'zip': req.params.zip });
