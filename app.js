@@ -56,7 +56,10 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+//app.get('/', routes.index);
+app.get('*',function(req,res){
+	res.sendfile('../public/index.html');
+});
 app.get('/users', user.list);
 app.get('/api/restaurants',function(req,res){
 	restaurant.find(function(err,restaurants){
