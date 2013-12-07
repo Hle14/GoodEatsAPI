@@ -61,14 +61,12 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-<<<<<<< HEAD
+
 //app.get('/', routes.index);
 app.get('*',function(req,res){
 	res.sendfile('../public/index.html');
 });
-app.get('/users', user.list);
-=======
->>>>>>> origin/jonathan
+
 app.get('/api/restaurants',function(req,res){
 	restaurant.find(function(err,restaurants){
 		if (err)
@@ -85,25 +83,34 @@ app.get('/api/restaurants/:name',function(req,res){
 	})
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
+
 app.get('/api/sms', function(req, res) {
 
 	var resp = new twilio.TwimlResponse();
 	//var parsedResponse = textmessage.parse(req);
 	//resp.message(parsedresponse.toString());
-	resp.messge("Thanks for texting us. This service isn't running yet but it will be soon");
-	res.send(resp.toString());
+
+	restaurant.find({'name': parsedResponse},function(err,restaurants){
+		
+		console.log(restaurants);
+		//res.json(restaurants);
+		//get random restaurant from list of returned results
+		var picked = restaurants[Math.floor(Math.random()*restaurants.length)];
+		//send just the name of the restaurant
+		var messageText = picked.name + ' ' + picked.address;
+		console.log(messageText);
+		resp.message(messageText);
+		res.send(resp.toString());
+	});
+
+	//resp.message("Thanks for texting us. This service isn't running yet but it will be soon");
+	//res.send(resp.toString());
 });
 
->>>>>>> origin/jonathan
 app.get('*', function(req, res) {
 	res.sendfile('./public/index.html');
 });
 
->>>>>>> origin/jonathan
 /*app.get('/api/restaurants/:zip',function(req,res){
 	restaurants.find({ 'zip': req.params.zip });
 });*/
