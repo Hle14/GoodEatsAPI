@@ -31,10 +31,18 @@
 			<h1>Restaurants In Your Area <span class="label label-info">{{ restaurants.length }}</span></h1>
 		</div>
 
+		<div class="row">
+			<form>
+				<button class="btn btn-large" type="button">Search restaurants by name</button> <input ng-model="search.name">
+				<button class="btn btn-large" type="button">Search restaurants by zipcode</button> <input ng-model="search.zip">
+				<button class="btn btn-large" type="button">Search restaurants by by average sugar rating</button> <input ng-model="search.sugarRating">
+			</form>
+		</div>
+
 		<div id="restaurant-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 
-				<div class="checkbox" ng-repeat="restaurant in restaurants">
+				<div class="checkbox" ng-repeat="restaurant in restaurants | filter:search">
 					<label>
 						<input type="checkbox"> {{ restaurant.name }}
 					</label>

@@ -20,11 +20,12 @@ app.configure(function() {
 
 var mongoose = require('mongoose');
 
-mongoose.connect('ENTER MONGO URL HERE');
+mongoose.connect('mongodb://localhost:27017/Restaurants');
 
 var restaurant = mongoose.model('restaurant',{
 	name : String,
 	address : String,
+	sugarRating : Number,
 	dishes : [{
 		name : String,
 		levels : {type : Number, min : 0}
@@ -37,6 +38,7 @@ var restaurant = mongoose.model('restaurant',{
 var hans = new restaurant({
 	name : 'hans',
 	address : 'lol',
+	sugarRating : 5,
 	dishes : [{
 		name : 'pro foodz',
 		levels : 2
@@ -78,7 +80,7 @@ app.get('/api/restaurants/:name',function(req,res){
 });
 
 app.get('/api/restaurants/zipcode:zipNumber',function(req,res){
-	restaurant.find({'zipcode' : req.params.zipNumber}, function(err, results) {
+	restaurant.find({'zip' : req.params.zipNumber}, function(err, results) {
 		console.log(results);
 		res.json(results);
 	});
