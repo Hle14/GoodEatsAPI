@@ -11,6 +11,14 @@ var path = require('path');
 
 var app = express();
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/Restaurants');
+var restaurant = new mongoose.model('restaurant',{
+	name: String,
+	address: String,
+	dishes: [{name: String,levels:{type:Number, min:0}}]
+});
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
@@ -29,6 +37,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/api/restaurants',function(req,res))
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
