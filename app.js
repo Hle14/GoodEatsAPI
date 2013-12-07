@@ -68,11 +68,15 @@ app.get('/api/restaurants',function(req,res){
 });
 
 app.get('/api/restaurants/:name',function(req,res){
-	restaurants.find({ 'name': req.params.name });
+	restaurant.find({'name' : req.params.name}, function(err, results) {
+		console.log(results);
+		res.json(results);
+	})
 });
-app.get('/api/restaurants/:zip',function(req,res){
+
+/*app.get('/api/restaurants/:zip',function(req,res){
 	restaurants.find({ 'zip': req.params.zip });
-});
+});*/
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
