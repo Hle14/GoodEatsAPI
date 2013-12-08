@@ -11,7 +11,7 @@
 	<title>Node/Angular Todo App</title>
 
 	<!-- SCROLLS -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="./stylesheets/bootstrapmin.css"><!-- load bootstrap -->
 	<style>
 		html 					{ overflow-y:scroll; }
 		body 					{ padding-top:50px; }
@@ -33,12 +33,27 @@
 			<h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length }}</span></h1>
 		</div>
 
+<<<<<<< HEAD
 		<!-- TODO LIST -->
 		<div id="todo-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
 				<div class="checkbox" ng-repeat="todo in todos">
+=======
+		<div class="row">
+			<form>
+				<p><button class="btn btn-large" type="button">Search restaurants by name</button> <input ng-model="search.name"></p>
+				<p><button class="btn btn-large" type="button">Search restaurants by zipcode</button> <input ng-model="search.zip"></p>
+				<p><button class="btn btn-large" type="button">Search restaurants by by average sugar rating</button> <input ng-model="search.sugarRating"></p>
+			</form>
+		</div>
+
+		<div id="restaurant-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+				<div class="checkbox" ng-repeat="restaurant in restaurants | filter:search">
+>>>>>>> origin/jonathan
 					<label>
 						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
 					</label>
