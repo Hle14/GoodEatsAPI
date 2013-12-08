@@ -85,15 +85,13 @@ app.get('/api/restaurants/:name',function(req,res){
 	})
 });
 
-<<<<<<< HEAD
-=======
 app.get('/api/restaurants/zipcode:zipNumber',function(req,res){
 	restaurant.find({'zip' : req.params.zipNumber}, function(err, results) {
 		console.log(results);
 		res.json(results);
 	});
 });
->>>>>>> origin/jonathan
+
 
 app.get('/api/sms', function(req, res) {
 	//console.log(req);
